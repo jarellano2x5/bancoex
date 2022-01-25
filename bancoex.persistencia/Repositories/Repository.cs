@@ -1,39 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using bancoex.core.Interfaces;
+using bancoex.persistencia.Data;
+using bancoex.core.Entities;
+using System.Linq.Expressions;
 
 namespace bancoex.persistencia.Repositories
 {
-	public class Repository<T> : IRepository<T> where T : class
+	public class Repository<T> : IRepository<T> where T : class, IEntity
 	{
-		public Repository()
+        private readonly BanCtx _ctx;
+
+        private DbSet<T> _entity;
+
+		public Repository(BanCtx context)
 		{
+            _ctx = context;
+            _entity = context.Set<T>();
 		}
 
-        public Task<int> Create(T entity)
+        public async Task<int> Create(T entity)
         {
-            throw new NotImplementedException();
+            _entity.Add(entity);
+            await _ctx.SaveChangesAsync();
+            return entity.Id;
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            T entity = await _entity.FirstOrDefaultAsync(e => e.Id == id);
+            if (entity == null) return false;
+            _entity.Remove(entity);
+            await _ctx.SaveChangesAsync();
+
+            return true;
         }
 
-        public Task<IEnumerable<T>> Filter(Func<T, bool> query)
+        public async Task<IEnumerable<T>> Filter(Expression<Func<T, bool>> query)
         {
-            throw new NotImplementedException();
+            return await _entity.Where(query).ToListAsync();
         }
 
-        public Task<T> Read(int id)
+        public async Task<T> Read(int id)
         {
-            throw new NotImplementedException();
+            return await _entity.FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public Task<int> Update(int id, T entity)
+        public async Task<int> Update(int id, T entity)
         {
-            throw new NotImplementedException();
+            var update = await _entity.FirstOrDefaultAsync(e => e.Id == id);
+            if (update == null) return 0;
+            update = entity;
+            _entity.Update(update);
+            return update.Id;
         }
     }
 }

@@ -26,8 +26,6 @@ namespace bancoex.web.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            return _object.generera(param);
-            /*
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -36,7 +34,6 @@ namespace bancoex.web.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
-            */
         }
     }
 }

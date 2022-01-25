@@ -3,7 +3,7 @@ using bancoex.core.Enums;
 
 namespace bancoex.core.Entities
 {
-	public class Movimiento
+	public class Movimiento : IEntity
 	{
 		public Movimiento()
 		{

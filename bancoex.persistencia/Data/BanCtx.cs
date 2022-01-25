@@ -49,7 +49,9 @@ namespace bancoex.persistencia.Data
 
                 entity.HasOne(d => d.Cliente)
                     .WithMany(p => p.Cuentas)
-                    .HasForeignKey(d => d.IdCliente);
+                    .HasForeignKey(d => d.IdCliente)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Cuenta_Cliente");
             });
 
             modelBuilder.Entity<Movimiento>(entity =>
