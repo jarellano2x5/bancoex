@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace bancoex.core.Entities
 {
-	public class Cliente : IEntity
+	public class Cliente
 	{
 		public Cliente()
 		{

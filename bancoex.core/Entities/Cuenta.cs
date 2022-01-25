@@ -4,7 +4,7 @@ using bancoex.core.Enums;
 
 namespace bancoex.core.Entities
 {
-	public class Cuenta : IEntity
+	public class Cuenta
 	{
 		public Cuenta()
 		{
