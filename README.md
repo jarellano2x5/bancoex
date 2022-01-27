@@ -25,3 +25,20 @@ mes de febrero 2022.
 Espero este proyecto pueda acelerar o aclarar dudas en sus desarrollos.
 
 Saludos.
+
+########################
+Actualización, se ha terminado la etapa de construcción del proyecto base.
+
+- web : se agregó un validador de error en el caso de los movimientos, para mostrar el uso de una regla
+  de negocio, se debe mejorar este rubro, para captar las excepciones desde el proyecto core
+- core : se implemento el uso de AutoMapper para conbinar entre entidades de db y DTOs, queda pendiente
+  separar las interfaces de servicios de las implementaciones, no encontramos un mejor nombre de carpeta
+- persistencia : se intento utilizar in-memory, pero lo que genera es una base de datos no relacional,
+  debido a que se revisaría Fluent API para la creación del DbContext se decidio utilizar Sqlite
+  
+Esta implementación es una opinión de como se implementa Clean Architecture y no debe ser tomado como
+crítica a otras implementaciones, es un intento de 4 horas de explicación y desarrollo de la arquitectura
+que puedes consultar en 
+https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures
+
+Espero les sirva, Saludos.
