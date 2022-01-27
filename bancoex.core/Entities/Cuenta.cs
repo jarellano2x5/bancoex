@@ -5,7 +5,7 @@ using bancoex.core.Interfaces;
 
 namespace bancoex.core.Entities
 {
-	public class Cuenta
+	public class Cuenta : IEntity
 	{
 		public Cuenta()
 		{

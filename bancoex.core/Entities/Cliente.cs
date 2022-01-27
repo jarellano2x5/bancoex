@@ -4,7 +4,7 @@ using bancoex.core.Interfaces;
 
 namespace bancoex.core.Entities
 {
-	public class Cliente
+	public class Cliente : IEntity
 	{
 		public Cliente()
 		{

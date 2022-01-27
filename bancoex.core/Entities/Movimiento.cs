@@ -4,7 +4,7 @@ using bancoex.core.Interfaces;
 
 namespace bancoex.core.Entities
 {
-	public class Movimiento
+	public class Movimiento : IEntity
 	{
 		public Movimiento()
 		{
