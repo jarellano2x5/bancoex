@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using bancoex.core.DTOs;
@@ -8,8 +6,9 @@ using bancoex.core.Services;
 
 namespace bancoex.web.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
-    public class ClienteController : Controller
+    public class ClienteController : ControllerBase
     {
         private readonly IClienteService _service;
 
@@ -51,7 +50,7 @@ namespace bancoex.web.Controllers
         [HttpDelete("{id}")]
         public async Task<bool> Delete(int id)
         {
-            return await _service.Delete(id);
+            return await _service.DeleteAsync(id);
         }
     }
 }

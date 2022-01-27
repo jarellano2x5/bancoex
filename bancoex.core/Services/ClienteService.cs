@@ -28,14 +28,15 @@ namespace bancoex.core.Services
             return dto;
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            return await _repository.Delete(id);
+            Cliente entity = await _repository.Read(id);
+            return await _repository.Delete(entity);
         }
 
         public async Task<IEnumerable<ClienteDTO>> GetActivoAsync()
         {
-            return _mapper.Map<List<ClienteDTO>>(await _repository.Filter(r => r.Activo == true));
+            return _mapper.Map<IEnumerable<ClienteDTO>>(await _repository.Filter(r => r.Activo == true));
         }
 
         public async Task<ClienteDTO> GetAsync(int id)
@@ -45,6 +46,9 @@ namespace bancoex.core.Services
 
         public async Task<ClienteDTO> UpdateAsync(int id, ClienteDTO dto)
         {
+            Cliente entity = await _repository.Read(id);
+            if (entity == null) throw new Exception("Cliente no existe");
+            dto.Id = entity.Id;
             int upid = await _repository.Update(id, _mapper.Map<Cliente>(dto));
             dto.Id = upid;
             return dto;

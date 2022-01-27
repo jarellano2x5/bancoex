@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using bancoex.core.Enums;
+using bancoex.core.Interfaces;
 
 namespace bancoex.core.Entities
 {

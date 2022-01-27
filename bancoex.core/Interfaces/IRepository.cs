@@ -11,7 +11,7 @@ namespace bancoex.core.Interfaces
 		Task<int> Create(T entity);
 		Task<T> Read(int id);
 		Task<int> Update(int id, T entity);
-		Task<bool> Delete(int id);
+		Task<bool> Delete(T entity);
 
 		Task<IEnumerable<T>> Filter(Expression<Func<T, bool>> query);
 	}

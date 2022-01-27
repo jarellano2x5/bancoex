@@ -13,6 +13,8 @@ namespace bancoex.core
 			services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 			services.AddTransient<IClienteService, ClienteService>();
+			services.AddTransient<ICuentaService, CuentaService>();
+			services.AddTransient<IMovimientoService, MovimientoService>();
 
 			return services;
         }

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace bancoex.core.Entities
+namespace bancoex.core.Interfaces
 {
 	public interface IEntity
 	{

@@ -10,7 +10,7 @@ namespace bancoex.core.Services
 		Task<ClienteDTO> CreateAsync(ClienteDTO dto);
 		Task<ClienteDTO> GetAsync(int id);
 		Task<ClienteDTO> UpdateAsync(int id, ClienteDTO dto);
-		Task<bool> Delete(int id);
+		Task<bool> DeleteAsync(int id);
 		Task<IEnumerable<ClienteDTO>> GetActivoAsync();
 	}
 }

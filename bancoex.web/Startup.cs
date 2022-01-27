@@ -23,7 +23,7 @@ namespace bancoex.web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCore();
-            services.AddInfrastructure(Configuration);
+            services.AddPersistencia(Configuration);
             services.AddControllers();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

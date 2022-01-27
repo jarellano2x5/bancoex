@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using bancoex.core.Interfaces;
 
 namespace bancoex.core.Entities
 {

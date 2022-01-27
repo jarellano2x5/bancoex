@@ -1,0 +1,60 @@
+<h1>Movimientos</h1>
+
+<div>
+    <div>
+        <div class="row">
+            <div class="col">
+                <select name="" id="" [(ngModel)]="cli" (change)="changeCliente()" class="form-control">
+                    <option value="0">Seleccione</option>
+                    <option *ngFor="let cl of clis" [ngValue]="cl.id">{{ cl.nombre }}</option>
+                </select>
+            </div>
+            <div class="col">
+                <select name="" id="" [(ngModel)]="mov.idCuenta" (change)="changeCuenta()" class="form-control">
+                    <option value="0">Seleccione</option>
+                    <option *ngFor="let ct of cues" [ngValue]="ct.id">{{ ct.numeroCuenta }}</option>
+                </select>
+            </div>
+            <div class="col">
+                <input type="text" [(ngModel)]="mov.importe" placeholder="Identificación" class="form-control">
+            </div>
+            <div class="col">
+                <select name="" id="" [(ngModel)]="mov.tipo" class="form-control">
+                    <option *ngFor="let t of tips" [ngValue]="t.id">{{ t.nm }}</option>
+                </select>
+            </div>
+            <div class="col">
+                <div class="btn-group">
+                    <button type="button" (click)="save()" class="btn btn-outline-success btn-sm">
+                        Guardar
+                    </button>
+                    <button type="button" (click)="refresh()" class="btn btn-outline-danger btn-sm">
+                        Limpiar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Cuenta</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Abono</th>
+            <th scope="col">Saldo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let m of movs">
+            <td scope="row">{{ m.id }}</td>
+            <td>{{ showCuenta(m.idCuenta) }}</td>
+            <td>{{ m.fecha | date: "dd-MM-yyyy hh:mm" }}</td>
+            <td>{{ m.tipo == 1 ? m.importe : '-' }}</td>
+            <td>{{ m.tipo == 2 ? m.importe : '-' }}</td>
+            <td>{{ showSaldo(m.saldo, m.importe, m.tipo)  }}</td>
+        </tr>
+    </tbody>
+</table>

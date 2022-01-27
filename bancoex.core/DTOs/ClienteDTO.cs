@@ -12,10 +12,10 @@ namespace bancoex.core.DTOs
 		[Required]
 		public int Id { get; set; }
 		[Required]
-		[StringLength(60)]
+		[StringLength(100)]
 		public string Identificacion { get; set; }
 		[Required]
-		[StringLength(100)]
+		[StringLength(200)]
 		public string Nombre { get; set; }
 		public bool Activo { get; set; }
 	}

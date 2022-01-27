@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using bancoex.core.Interfaces;
 using bancoex.persistencia.Data;
-using bancoex.core.Entities;
 using System.Linq.Expressions;
 
 namespace bancoex.persistencia.Repositories
@@ -29,10 +28,8 @@ namespace bancoex.persistencia.Repositories
             return entity.Id;
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(T entity)
         {
-            T entity = await _entity.FirstOrDefaultAsync(e => e.Id == id);
-            if (entity == null) return false;
             _entity.Remove(entity);
             await _ctx.SaveChangesAsync();
 
@@ -51,11 +48,13 @@ namespace bancoex.persistencia.Repositories
 
         public async Task<int> Update(int id, T entity)
         {
-            var update = await _entity.FirstOrDefaultAsync(e => e.Id == id);
-            if (update == null) return 0;
+            T update = await _entity.FindAsync(id);
+            _ctx.Entry<T>(update).State = EntityState.Detached;
             update = entity;
-            _entity.Update(update);
-            return update.Id;
+            _ctx.Entry<T>(update).State = EntityState.Modified;
+            await _ctx.SaveChangesAsync();
+            
+            return entity.Id;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace bancoex.persistencia
 {
 	public static class DependencyInjection
 	{
-		public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+		public static IServiceCollection AddPersistencia(this IServiceCollection services, IConfiguration configuration)
         {
 			services.AddDbContext<BanCtx>(options =>
 			{
