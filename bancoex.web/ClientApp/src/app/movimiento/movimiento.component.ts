@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Movimiento } from '../models/movimiento';
 import { Cliente } from '../models/cliente';
 import { Cuenta } from '../models/cuenta';
@@ -46,14 +48,15 @@ export class MovimientoComponent {
 
     save() {
         if (this.mov.id == 0) {
-          this.http.post<Movimiento>(`${this.burl}api/movimiento`, this.mov)
-          .subscribe(resp => {
-            this.mov = resp;
-            this.clean();
-          }, err => {
-              console.error(err);
-              console.log(err.error.message);
-          });
+            this.http.post<Movimiento>(`${this.burl}api/movimiento`, this.mov)
+            .pipe(catchError(err => {
+                    alert(err.error);
+                    return throwError(err);
+            }))
+            .subscribe(resp => {
+                this.mov = resp;
+                this.clean();
+            });
         }
     }
 
@@ -69,11 +72,11 @@ export class MovimientoComponent {
     changeCuenta() {
         this.movs = [];
         if (this.mov.idCuenta > 0) {
-            this.http.get<Movimiento[]>(`${this.burl}api/movimiento/getbycuenta/${this.mov.idCuenta}`).subscribe(resp => {
+            this.http.get<Movimiento[]>(`${this.burl}api/movimiento/getbycuenta/${this.mov.idCuenta}`)
+            .subscribe(resp => {
                 this.movs = resp;
             }, err => {
                 console.error(err);
-                alert(err.message);
             });
         }
     }
