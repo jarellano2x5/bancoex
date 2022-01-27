@@ -1,0 +1,56 @@
+<h1>Clientes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Identificación</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Activada</th>
+            <th>
+                <button type="button" (click)="create()" class="btn btn-outline-success btn-sm">
+                    Nuevo
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of clis">
+            <th scope="row">{{ c.id }}</th>
+            <th>{{ c.identificacion }}</th>
+            <th>{{ c.nombre }}</th>
+            <th>{{ c.activo }}</th>
+            <th>
+                <button type="button" (click)="edit(c)" class="btn btn-outline-info btn-sm">
+                    Editar
+                </button>
+                <button type="button" (click)="select(c)" data-toggle="modal" data-target="#modalCuenta" class="btn btn-outline-info btn-sm">
+                    Cuentas
+                </button>
+            </th>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="!show">
+    <div>
+        <div class="row">
+            <div class="col">
+                <input type="text" [(ngModel)]="cli.identificacion" placeholder="Identificación" class="form-control">
+            </div>
+            <div class="col">
+                <input type="text" [(ngModel)]="cli.nombre" placeholder="Nombre completo" class="form-control">
+            </div>
+            <div class="col">
+                <div class="btn-group">
+                    <button type="button" (click)="save()" class="btn btn-outline-success btn-sm">
+                        Guardar
+                    </button>
+                    <button type="button" (click)="refresh()" class="btn btn-outline-danger btn-sm">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<cuenta-component [value]="sel"></cuenta-component>

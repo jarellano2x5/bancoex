@@ -1,5 +1,6 @@
 ﻿using System;
 using bancoex.core.Enums;
+using bancoex.core.Interfaces;
 
 namespace bancoex.core.Entities
 {

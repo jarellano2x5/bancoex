@@ -1,0 +1,75 @@
+<div class="modal fade" id="modalCuenta" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalScrollableTitle">Cuentas</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{ value.identificacion }} - {{ value.nombre }}
+          <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Cuenta</th>
+                        <th scope="col">Saldo</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Activa</th>
+                        <th>
+                            <button type="button" (click)="create()" class="btn btn-outline-success btn-sm">
+                                Nuevo
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ct of ctas">
+                        <th scope="row">{{ ct.id }}</th>
+                        <th>{{ ct.numeroCuenta }}</th>
+                        <th>{{ ct.saldo }}</th>
+                        <th>{{ ct.tipo }}</th>
+                        <th>{{ ct.activa }}</th>
+                        <th>
+                            <button type="button" (click)="edit(ct)" class="btn btn-outline-info btn-sm">
+                                Editar
+                            </button>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="!show">
+                <div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" [(ngModel)]="cta.numeroCuenta" placeholder="Cuenta" class="form-control">
+                        </div>
+                        <div class="col">
+                            <input type="text" [ngModel]="cta.saldo" placeholder="Saldo" class="form-control" readonly>
+                        </div>
+                        <div class="col">
+                            <select name="" id="" [(ngModel)]="cta.tipo" class="form-control">
+                                <option value="0">Seleccione</option>
+                                <option *ngFor="let t of tips" [ngValue]="t.id">{{ t.nm }}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button type="button" (click)="save()" class="btn btn-outline-success btn-sm">
+                                    Guardar
+                                </button>
+                                <button type="button" (click)="refresh()" class="btn btn-outline-danger btn-sm">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
